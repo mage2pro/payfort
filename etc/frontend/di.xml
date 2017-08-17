@@ -1,0 +1,23 @@
+<?xml version='1.0'?>
+<config
+	xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'
+	xsi:noNamespaceSchemaLocation='urn:magento:framework:ObjectManager/etc/config.xsd'
+>
+	<type name='Magento\Checkout\Model\CompositeConfigProvider'>
+		<arguments>
+			<argument name='configProviders' xsi:type='array'>
+				<item name='dfe_pay_fort' xsi:type='object'>Dfe\PayFort\ConfigProvider</item>
+			</argument>
+		</arguments>
+	</type>
+	<type name='Magento\Payment\Model\CcGenericConfigProvider'>
+		<arguments>
+			<argument name='methodCodes' xsi:type='array'>
+				<item name='dfe_pay_fort' xsi:type='string'>dfe_pay_fort</item>
+			</argument>
+		</arguments>
+	</type>
+	<virtualType name='Dfe\PayFort\ConfigProvider' type='Df\StripeClone\ConfigProvider'>
+		<arguments><argument name='module' xsi:type='string'>Dfe_PayFort</argument></arguments>
+	</virtualType>
+</config>

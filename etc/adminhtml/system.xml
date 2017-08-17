@@ -1,0 +1,238 @@
+<?xml version='1.0'?>
+<config
+	xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'
+	xsi:noNamespaceSchemaLocation='urn:magento:module:Df_Config:etc/system_file.xsd'
+>
+	<system>
+		<section id='df_payment'>
+<!--
+2015-09-25
+1-я и 2-я цифры sortOrder соответствуют порядковому номеру первой буквы модуля
+в английском алфавите: https://en.wikipedia.org/wiki/English_alphabet
+3-я и 4-я цифры sortOrder соответствуют порядковому номеру второй буквы модуля
+в английском алфавите.
+-->
+			<group
+				id='pay_fort'
+				showInDefault='1' showInStore='1' showInWebsite='1'
+				sortOrder='1601'
+				translate='label'
+				type='text'
+			>
+				<label>PayFort</label>
+				<dfExtension>Dfe_PayFort</dfExtension>
+				<frontend_model>Df\Config\Fieldset</frontend_model>
+				<field
+					id='enable'
+					showInDefault='1' showInStore='1' showInWebsite='1'
+					sortOrder='1'
+					translate='label'
+					type='Df\Framework\Form\Element\Checkbox'
+				>
+					<label>Enable?</label>
+					<backend_model>Df\Config\Backend\Checkbox</backend_model>
+					<comment><![CDATA[Enable the «<a href='https://mage2.pro/c/extensions/payfort' target='_blank'>PayFort</a>» payment extension?]]></comment>
+				</field>
+				<field
+					id='title'
+					showInDefault='1' showInStore='1' showInWebsite='1'
+					sortOrder='2'
+					translate='label'
+					type='text'
+				>
+					<label>Title</label>
+					<comment><![CDATA[It is shown on the checkout screen.]]></comment>
+					<depends><field id='enable'>1</field></depends>
+					<validate>required-entry</validate>
+				</field>
+				<field
+					id='test'
+					showInDefault='1' showInStore='1' showInWebsite='1'
+					sortOrder='3'
+					translate='label'
+					type='Df\Framework\Form\Element\Checkbox'
+				>
+					<label>Sandbox Mode?</label>
+					<backend_model>Df\Config\Backend\Checkbox</backend_model>
+					<comment><![CDATA[<a href='https://mage2.pro/t/2617' target='_blank'>How to create a sandbox account?</a>]]></comment>
+					<depends><field id='enable'>1</field></depends>
+				</field>
+				<field
+					id='testPublicKey'
+					showInDefault='1' showInStore='1' showInWebsite='1'
+					sortOrder='4'
+					translate='label'
+					type='text'
+				>
+					<label>Test API Key</label>
+					<comment><![CDATA[]]></comment>
+					<depends>
+						<field id='enable'>1</field>
+						<field id='test'>1</field>
+					</depends>
+					<validate>required-entry</validate>
+				</field>
+				<field
+					id='testPrivateKey'
+					showInDefault='1' showInStore='1' showInWebsite='1'
+					sortOrder='5'
+					translate='label'
+					type='obscure'
+				>
+					<label>Test Secret Key</label>
+					<comment><![CDATA[]]></comment>
+					<backend_model>Magento\Config\Model\Config\Backend\Encrypted</backend_model>
+					<depends>
+						<field id='enable'>1</field>
+						<field id='test'>1</field>
+					</depends>
+					<validate>required-entry</validate>
+				</field>
+				<field
+					id='livePublicKey'
+					showInDefault='1' showInStore='1' showInWebsite='1'
+					sortOrder='6'
+					translate='label'
+					type='text'
+				>
+					<label>Live API Key</label>
+					<comment><![CDATA[]]></comment>
+					<depends>
+						<field id='enable'>1</field>
+						<field id='test'>0</field>
+					</depends>
+					<validate>required-entry</validate>
+				</field>
+				<field
+					id='livePrivateKey'
+					showInDefault='1' showInStore='1' showInWebsite='1'
+					sortOrder='7'
+					translate='label'
+					type='obscure'
+				>
+					<label>Live Secret Key</label>
+					<comment><![CDATA[]]></comment>
+					<backend_model>Magento\Config\Model\Config\Backend\Encrypted</backend_model>
+					<depends>
+						<field id='enable'>1</field>
+						<field id='test'>0</field>
+					</depends>
+					<validate>required-entry</validate>
+				</field>
+				<field
+					id='currency'
+					showInDefault='1' showInStore='1' showInWebsite='1'
+					sortOrder='8'
+					translate='label'
+					type='Df\Directory\FormElement\Currency'
+				>
+					<label>Payment Currency</label>
+					<comment><![CDATA[]]></comment>
+					<depends><field id='enable'>1</field></depends>
+				</field>
+				<field
+					id='actionForNew'
+					showInDefault='1' showInStore='1' showInWebsite='1'
+					sortOrder='9'
+					translate='label'
+					type='select'
+				>
+					<label>Payment Action for a New Customer</label>
+					<source_model>Df\Payment\Source\ACR</source_model>
+					<comment><![CDATA[A customer is regarded as <b>new</b>, if he does not have any order in the «Completed» or «Processing» state.]]></comment>
+					<depends><field id='enable'>1</field></depends>
+				</field>
+				<field
+					id='actionForReturned'
+					showInDefault='1' showInStore='1' showInWebsite='1'
+					sortOrder='10'
+					translate='label'
+					type='select'
+				>
+					<label>Payment Action for a Returned Customer</label>
+					<source_model>Df\Payment\Source\ACR</source_model>
+					<depends><field id='enable'>1</field></depends>
+				</field>
+				<field
+					id='description'
+					showInDefault='1' showInStore='1' showInWebsite='1'
+					sortOrder='11'
+					translate='label'
+					type='textarea'
+				>
+					<label>Description</label>
+					<comment><![CDATA[It will be displayed in the PayFort web interface alongside the payment.<br/>You can use <a href='https://mage2.pro/t/1834' target='_blank'>variables</a> in the description.]]></comment>
+					<depends><field id='enable'>1</field></depends>
+				</field>
+				<field
+					id='requireBillingAddress'
+					showInDefault='1' showInStore='1' showInWebsite='1'
+					sortOrder='12'
+					translate='label'
+					type='Df\Framework\Form\Element\Checkbox'
+				>
+					<label>Require the billing address?</label>
+					<backend_model>Df\Config\Backend\Checkbox</backend_model>
+					<comment><![CDATA[If <b>checked</b>, Magento will require the billing address. It is the default Magento behavior.<br/>If <b>unchecked</b>, Magento will not require the billing address, and even will not ask for it.]]></comment>
+					<depends><field id='enable'>1</field></depends>
+				</field>
+				<field
+					id='min_order_total'
+					showInDefault='1' showInStore='1' showInWebsite='1'
+					sortOrder='13'
+					translate='label'
+					type='text'
+				>
+					<label>Minimum Order Total</label>
+					<comment><![CDATA[]]></comment>
+					<validate>validate-number validate-greater-than-zero</validate>
+					<depends><field id='enable'>1</field></depends>
+				</field>
+				<field
+					id='max_order_total'
+					showInDefault='1' showInStore='1' showInWebsite='1'
+					sortOrder='14'
+					translate='label'
+					type='text'
+				>
+					<label>Maximum Order Total</label>
+					<comment><![CDATA[]]></comment>
+					<validate>validate-number validate-greater-than-zero</validate>
+					<depends><field id='enable'>1</field></depends>
+				</field>
+				<field
+					id='country_restriction'
+					showInDefault='1' showInStore='1' showInWebsite='1'
+					sortOrder='15'
+					translate='label'
+					type='select'
+				>
+					<label>Country Restriction</label>
+					<source_model>Df\Config\Source\NoWhiteBlack</source_model>
+					<depends><field id='enable'>1</field></depends>
+				</field>
+				<field
+					id='countries'
+					showInDefault='1' showInStore='1' showInWebsite='1'
+					sortOrder='16'
+					translate='label'
+					type='Df\Framework\Form\Element\Multiselect'
+				>
+					<label>Countries</label>
+					<source_model>Magento\Directory\Model\Config\Source\Country</source_model>
+					<can_be_empty>1</can_be_empty>
+					<depends>
+						<field id='enable'>1</field>
+<!--
+2016-03-08
+«The negative syntax for a backend config field <depends> condition»
+https://mage2.pro/t/329
+-->
+						<field id='country_restriction' negative='1'>0</field>
+					</depends>
+					<comment><![CDATA[Customers from which countries can (or can not) use the method?]]></comment>
+				</field>
+			</group>
+		</section>
+	</system>
+</config>

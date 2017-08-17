@@ -1,0 +1,29 @@
+<?xml version='1.0'?>
+<config
+    xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'
+    xsi:noNamespaceSchemaLocation='urn:magento:module:Magento_Store:etc/config.xsd'
+>
+    <default>
+		<df_payment>
+			<pay_fort>
+				<actionForNew>authorize_capture</actionForNew>
+				<actionForReturned>authorize_capture</actionForReturned>
+				<requireBillingAddress>1</requireBillingAddress>
+				<title>Bank Card</title>
+				<title_backend>PayFort</title_backend>
+			</pay_fort>
+		</df_payment>
+        <payment>
+            <dfe_pay_fort>
+<!-- 2017-07-24
+@used-by \Magento\Payment\Helper\Data::getMethodModelConfigName():
+	protected function getMethodModelConfigName($code) {
+		return sprintf('%s/%s/model', self::XML_PATH_PAYMENT_METHODS, $code);
+	}
+https://github.com/magento/magento2/blob/2.2.0-RC1.5/app/code/Magento/Payment/Helper/Data.php#L85-L92
+-->
+				<model>Dfe\PayFort\Method</model>
+            </dfe_pay_fort>
+        </payment>
+    </default>
+</config>
