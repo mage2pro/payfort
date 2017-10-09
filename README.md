@@ -2,8 +2,8 @@ The extension integrates your Magento 2 store with the **[PayFort](https://www.p
 Payfort [is available](https://www.payfort.com/payfort-faqs/#section30) for merchants in the United Arab Emirates, Egypt, Saudi Arabia, Jordan, Lebanon and Qatar.
 
 ## How to buy
-The extension is not released yet, so there is no way to buy it just now.  
-The extension will be released when I will want so.   
+The extension is not released yet, so there is no way to buy it just now.   
+The extension will be released when somebody provides me an access to the PayFort API. 
 
 ## How to install
 ### 1. Free installation service
