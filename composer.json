@@ -1,7 +1,7 @@
 {
 	"name": "mage2pro/payfort"
 	,"version": "0.0.3"
-	,"description": "The «PayFort» payment extension for Magento 2."
+	,"description": "PayFort integration with Magento 2"
 	,"type": "magento2-module"
 	,"homepage": "https://mage2.pro/c/extensions/payfort"
 	,"license": "proprietary"
