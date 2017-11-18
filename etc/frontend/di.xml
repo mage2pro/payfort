@@ -20,4 +20,5 @@
 	<virtualType name='Dfe\PayFort\ConfigProvider' type='Df\StripeClone\ConfigProvider'>
 		<arguments><argument name='module' xsi:type='string'>Dfe_PayFort</argument></arguments>
 	</virtualType>
+	<virtualType name='Dfe\PayFort\Controller\Index\Index' type='Df\Payment\W\Action'/>
 </config>
